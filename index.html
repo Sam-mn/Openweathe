@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>☔️</title>
+</head>
+
+<body>
+	<div class="container">
+		<div id="app">
+
+			<form id="search-form">
+				<div id="query-wrapper">
+					<input type="text" id="query" name="query" class="form-control" placeholder="Type a city to show current weather for">
+					<input type="submit" id="search" name="search" class="btn btn-light" value="🔍">
+				</div>
+			</form>
+
+			<div id="forecast" class="card d-none">
+				<img src="" class="card-img-top">
+				<div class="card-body">
+					<h3 class="card-title" id="city">City</h3>
+					<p class="temp">
+						<span id="temperature">300</span>
+						&deg;K
+					</p>
+					<p class="wind">
+						<span id="windspeed">3</span>
+						m/s
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="openWeathermap.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
