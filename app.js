@@ -44,7 +44,7 @@ form.addEventListener('submit', (e)=>{
         return;
     }
 
-    localStorage.setItem('city', city);
+    
 
     getCurrentWeather(city)
     .then(data=>{
@@ -56,5 +56,21 @@ form.addEventListener('submit', (e)=>{
 
     })
     .catch(err=>{console.log(err)})
-    
+
+    localStorage.setItem('city', city);
 })
+
+
+
+
+    getCurrentWeather(localStorage.getItem('city'))
+    .then(data=>{
+        if(card.classList.contains('d-none')){
+
+            card.classList.remove('d-none')
+        };
+        randerCurentWeather(data)
+    })
+    .catch(err=>{console.log(err)})
+
+
