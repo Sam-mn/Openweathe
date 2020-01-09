@@ -3,16 +3,17 @@ const card = document.querySelector('.card');
 
 
 const randerCurentWeather = (data)=>{
-    let dayOrNight = data.dt > data.sys.sunrise && data.dt < data.sys.sunset?'cloud-346710_1280.png':'night-1851685_1280.png';
+    const now = Math.round(Date.now()/ 1000);
+    let dayOrNight = now > data.sys.sunrise && now < data.sys.sunset?'cloud-346710_1280.png':'night-1851685_1280.png';
+
+    let condition = data.weather;
+    console.log(condition);
+        condition = condition.map(el=>`<li><img src='http://openweathermap.org/img/wn/${el.icon}@2x.png'><br> ${el.description}</li>`)
 
     const template = `
         <img src=${dayOrNight} class="card-img-top">
-        <div class="icon">
-            <img src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'>
-        </div>
 		<div class="card-body">
             <h5 class="card-title" id="city">${data.name}, ${data.sys.country}</h5>
-            <h6>${data.weather[0].description}</h6>
 		    <p class="temp">
 			    <span id="temperature">${Math.round(data.main.temp)}</span>&deg;C
             </p>
@@ -24,6 +25,7 @@ const randerCurentWeather = (data)=>{
 		    <p class="hm">Wind speed: 
 	            <span id="windspeed">${data.wind.speed} </span>m/s
             </p>
+            <ul class='con'>${condition.join(' ')}</ul>
         </div>
         `
 
@@ -49,6 +51,7 @@ form.addEventListener('submit', (e)=>{
     getCurrentWeather(city)
     .then(data=>{
         if(data.cod === 200){
+            console.log(data);
             randerCurentWeather(data)
         }else{
             card.innerHTML = data.message;
